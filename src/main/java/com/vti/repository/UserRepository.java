@@ -13,7 +13,8 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserRepository {
+public class UserRepository implements IUserRepository {
+    @Override
     public List<User> findAll()
             throws SQLException, IOException {
         String sql = "SELECT * FROM users";
@@ -31,6 +32,7 @@ public class UserRepository {
         }
     }
 
+    @Override
     public User findById(int id)
             throws SQLException, IOException {
         String sql = "SELECT * FROM users WHERE id = ?";
@@ -45,6 +47,7 @@ public class UserRepository {
         }
     }
 
+    @Override
     public User findByEmailAndPassword(String email, String password)
             throws SQLException, IOException {
         String sql = "{CALL find_by_email_and_password(?, ?)}";
@@ -60,6 +63,7 @@ public class UserRepository {
         }
     }
 
+    @Override
     public int create(String fullName, String email)
             throws SQLException, IOException {
         String sql = "INSERT INTO users(full_name, email) VALUES (?, ?)";
@@ -73,6 +77,7 @@ public class UserRepository {
         }
     }
 
+    @Override
     public int deleteById(int id)
             throws SQLException, IOException {
         String sql = "DELETE FROM users WHERE id = ?";
