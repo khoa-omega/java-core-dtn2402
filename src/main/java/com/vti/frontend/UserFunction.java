@@ -5,6 +5,7 @@ import com.vti.repository.UserRepository;
 import com.vti.util.ScannerUtil;
 import lombok.AllArgsConstructor;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class UserFunction {
     private UserRepository repository;
 
-    public void showMenu() throws SQLException {
+    public void showMenu() throws SQLException, IOException {
         while (true) {
             System.out.println("1. Đăng nhập");
             System.out.println("2. Hiển thị danh sách user");
@@ -35,7 +36,7 @@ public class UserFunction {
         }
     }
 
-    private void showAdminMenu() throws SQLException {
+    private void showAdminMenu() throws SQLException, IOException {
         while (true) {
             System.out.println("1. Hiển thị danh sách user");
             System.out.println("2. Tìm kiếm user theo id");
@@ -61,7 +62,7 @@ public class UserFunction {
         }
     }
 
-    private void showEmployeeMenu() throws SQLException {
+    private void showEmployeeMenu() throws SQLException, IOException {
         while (true) {
             System.out.println("1. Hiển thị danh sách user");
             System.out.println("2. Tìm kiếm user theo id");
@@ -81,7 +82,7 @@ public class UserFunction {
         }
     }
 
-    private void findAll() throws SQLException {
+    private void findAll() throws SQLException, IOException {
         List<User> users = repository.findAll();
         System.out.println("+------+-------------------------+-------------------------+");
         System.out.printf("| %-4s | %-23s | %-23s |%n", "ID", "FULL NAME", "EMAIL");
@@ -100,7 +101,7 @@ public class UserFunction {
         }
     }
 
-    private void findById() throws SQLException {
+    private void findById() throws SQLException, IOException {
         System.out.println("Nhập vào id:");
         int id = ScannerUtil.inputInt();
         User user = repository.findById(id);
@@ -119,7 +120,7 @@ public class UserFunction {
         }
     }
 
-    private void findByEmailAndPassword() throws SQLException {
+    private void findByEmailAndPassword() throws SQLException, IOException {
         System.out.println("Nhập vào email:");
         String email = ScannerUtil.inputEmail();
         System.out.println("Nhập vào password:");
@@ -141,7 +142,7 @@ public class UserFunction {
         }
     }
 
-    private void create() throws SQLException {
+    private void create() throws SQLException, IOException {
         System.out.println("Mời bạn nhập vào thông tin user.");
         System.out.println("Nhập vào full name:");
         String fullName = ScannerUtil.inputFullName();
@@ -151,7 +152,7 @@ public class UserFunction {
         System.out.printf("Đã tạo thành công %d user.%n", result);
     }
 
-    private void deleteById() throws SQLException {
+    private void deleteById() throws SQLException, IOException {
         System.out.println("Nhập vào id:");
         int id = ScannerUtil.inputInt();
         int result = repository.deleteById(id);
