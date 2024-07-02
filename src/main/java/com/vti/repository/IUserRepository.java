@@ -7,29 +7,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserRepository {
-    /**
-     * @return Trả về tất cả user trong database
-     * @throws SQLException Nếu xảy ra lỗi về SQL
-     * @throws IOException Nếu xảy ra lỗi cấu hình
-     */
-    List<User> findAll()
+    List<User> findEmployeeByProjectId(int projectId)
             throws SQLException, IOException;
 
-    /**
-     * @param id Định danh user
-     * @return Thông tin user theo id
-     * @throws SQLException Nếu xảy ra lỗi về SQL
-     * @throws IOException Nếu xảy ra lỗi cấu hình
-     */
-    User findById(int id)
+    List<User> findAllManager()
             throws SQLException, IOException;
 
-    User findByEmailAndPassword(String email, String password)
-            throws SQLException, IOException;
-
-    int create(String fullName, String email)
-            throws SQLException, IOException;
-
-    int deleteById(int id)
+    User findManagerByEmailAndPassword(String email, String password)
             throws SQLException, IOException;
 }
